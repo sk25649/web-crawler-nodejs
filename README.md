@@ -4,7 +4,8 @@ web-crawler-nodejs
 This is NodeJS crawler that uses https://github.com/sylvinus/node-crawler.
 Our goal is to crawl information about happy hour in Austin, TX.
 
-To run crawler,
+To run crawler, do 
+<br />
 <code>
 node crawler
 </code>
