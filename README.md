@@ -8,5 +8,5 @@ Our goal is to crawl information about happy hour in Austin, TX.
 To run crawler, do 
 <br />
 <code>
-node crawler
+$ node crawler
 </code>
