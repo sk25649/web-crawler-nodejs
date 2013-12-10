@@ -7,7 +7,7 @@ var c = new Crawler({
 
 	//This will be called for each crawled page
 	"callback":function(error, result, $) {
-		//$ is a jQuery instance scoped to the server-side DOM of the page
+        // If an "a" tag is found, check if it's a weekly happy hour link.
 		$("a").each(function(index, a) {
             if(a.href.substring(0,30) === "http://do512.com/events/weekly" &&
                     a.attributes.class != undefined) {
@@ -17,14 +17,16 @@ var c = new Crawler({
             }
 		});
 
+        // If a "span" tag is found, check if it's a weekly happy hour title.
         $("span").each(function(index, h) {
             if(h.attributes.class != undefined &&
                 h.attributes.class._nodeValue === "ds-event-title-text") {
                 console.log(h._childNodes[0]._nodeValue);
                 output.write(h._childNodes[0]._nodeValue + "\n");
             }
-       });
+        });
 
+        // If a "div" tag is found, check if it's a weekly happy hour date.
         $("div").each(function(index, h) {
             if(h.attributes.class != undefined &&
                 h.attributes.class._nodeValue === "ds-event-date") {
@@ -34,7 +36,7 @@ var c = new Crawler({
                 output.write('-----------------------------------------------\n');
             }
 
-       });
+        });
 	}
 });
 
