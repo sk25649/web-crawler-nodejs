@@ -26,14 +26,18 @@ var c = new Crawler({
             }
         });
 
-        // If a "div" tag is found, check if it's a weekly happy hour date.
+        // If a "div" tag is found, check if it's a weekly happy hour date and time.
         $("div").each(function(index, h) {
-            if(h.attributes.class != undefined &&
-                h.attributes.class._nodeValue === "ds-event-date") {
-                console.log(h._childNodes[0]._nodeValue);
-                console.log('-----------------------------------------------');
-                output.write(h._childNodes[0]._nodeValue + "\n");
-                output.write('-----------------------------------------------\n');
+            if(h.attributes.class != undefined){
+                if(h.attributes.class._nodeValue === "ds-event-date") {
+                    process.stdout.write(h._childNodes[0]._nodeValue + " @");
+                    output.write(h._childNodes[0]._nodeValue + " @");
+                } else if(h.attributes.class._nodeValue === "ds-event-time"){
+                    console.log(h._childNodes[0]._nodeValue);
+                    console.log('-----------------------------------------------');
+                    output.write(h._childNodes[0]._nodeValue + "\n");
+                    output.write('-----------------------------------------------\n');
+                }
             }
 
         });
