@@ -1,6 +1,7 @@
 var Crawler = require('crawler').Crawler;
 var fs = require('fs');
 var output = fs.createWriteStream('crawl_result.txt', {'flags': 'a'});
+var count = 1;
 
 var c = new Crawler({
 	"maxConnections":10,
@@ -22,7 +23,8 @@ var c = new Crawler({
             if(h.attributes.class != undefined &&
                 h.attributes.class._nodeValue === "ds-event-title-text") {
                 console.log(h._childNodes[0]._nodeValue);
-                output.write(h._childNodes[0]._nodeValue + "\n");
+                output.write(count + '. '+ h._childNodes[0]._nodeValue + "\n");
+                count++;
             }
         });
 
